@@ -8,11 +8,15 @@ export async function GET() {
       message: "Database connected successfully",
       time: result.rows[0].now,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    let errorMessage = "Unknown error";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
     return NextResponse.json(
       {
         message: "Database connection failed",
-        error: error.message,
+        error: errorMessage,
       },
       { status: 500 }
     );

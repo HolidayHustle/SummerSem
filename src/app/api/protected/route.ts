@@ -23,14 +23,13 @@ export async function GET(request: Request): Promise<Response> {
         headers: { "Content-Type": "application/json" },
       }
     );
-  } catch (err) {
+  } catch {
     return new Response(
       JSON.stringify({ message: "Invalid or expired token" }),
       {
         status: 401,
         headers: { "Content-Type": "application/json" },
-      },
-      
+      }
     );
   }
 }
